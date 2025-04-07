@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>변수와 자료형</h1>
+    <H2>입출력 방법</H2>
+    <div>F12를 눌러 개발자 도구, console에서 직접 입출력을 해서 팝업창 표시해보기<br>
+        alret("안녕하세요");<br>
+        a = 10;<br>
+        alret(a); //10 변수값이 출력됨<br>
+        confirm("프로그램을 종료하시겠습니까?");<br>
+        이때 확인을 누르면 true를 반환<br>
+        prompt("이름을 입력하세요.");<br>
+        이때 값을 입력하면 그 값이 반환됨.<br>
+        prompt("컨퍼런스 참석 여부(예/아니오)","예");<br>
+        이렇게 내용, 기본값을 입력하여 프롬프트창에 예가 입력된 상태로 창을 뛰우는 것도 가능<br>
+        <br>
+        console.log(내용 or 변수);<br>
+        name = "원석" //로 변수 선언 후<br>
+        console.log(name+"님은 자바스크립트를 좋아합니다.")// 으로 출력할 수 있음<br>
+    </div>
+
+    <H2>변수 익히기</H2>
+    <div>
+        변수 선언<br>
+        current, _current, $current; // 사용가능<br>
+        25current, curr ent, current*; //사용불가능<br>
+        <br>
+        값 할당<br>
+        let 변수명 = 값;<br>
+        const 상수명 = 값 ;//값이 바뀌지 않아 재할당 불가능<br>
+        <br>
+        필요 이유는 고정값을 필요로 하는 경우가 있기 때문<br>
+        const currentYear=2022;<br>
+        let birthYear = parseInt(prompt("태어난 해를 입력하세요."));<br>
+        let age = currentYear - birthYear +1;<br>
+        <br>
+        var와 변수 호이스팅<br>
+        var x = 10;<br>
+        var sum = x+y;<br>
+        var y = 20;<br>
+        console.log(sum);//값은 NaN 을 출력<br>
+        차라리 let이나 const라면 오류를 발생시키겠지만 var라서 오류 없음.<br>
+        var는 지양해야 함.<br>
+        <br>
+        변수 선언 후 재할당<br>
+        var라면 변수를 선언한 뒤 재할당 재선언 가능<br>
+        var sum = add(10,20);<br>
+        var sum = 100; //이런식으로 재선언과 재할당<br>
+        let을 재할당만 가능 let=100;이런식으로<br>
+    </div>
+    <h2>자료형</h2>
+    <div>
+        숫자나 문자열 등 처리해야 할 자료의 유형 = 자료형<br>
+        원시 유형 과 객체로 분리<br>
+        <br>
+        typeof(값 또는 변수)로 확인해보기<br>
+        typeof(data);//"number" 변수가 숫자형이란 것을 암시, typeof(10);//'number', typeof("10");// 'string' 
+        <br>
+        특수 기호도 \r (캐리지리턴) 등도 사용 가능<br>
+        console.log('탭 \t 포함');<br>
+        탬플릿 리터럴을 사용하여 + 기호를 사용하지 않고 ``와 ${변수명}을 통해 문자열에서 쉽게 변수출력 가능<br>
+        let name="백두산";<br>
+        let classroom = 201;<br>
+        console.log(`${name}님, ${classroom}호 강의실로 입장하세요.`);<br>
+        논리형 은 true,false , truthy, falsy <br>
+        nudefined 은 값할당 x , null은 값이 없거나 유효하지 않음<br>
+        <br>
+        객체 정의<br>
+        let gitBook = {
+            title : "깃&깃허브 입문",
+            pubDate : "2019-12-06",
+            pages : 272,
+            finished : true
+        }<br>
+        에서 gitBook.title , gitBook["finished"] 로 값 가져올 수 있음<br>
+        배열<br>
+        emptyArr=[]<br>
+        colors = ["red","blue","green"];//혹은 여러 자료형 도 가능<br>
+        colors[2]; 를 통해 배열 내의 값 확인 가능<br>
+        <br>
+        Symbol() 유일성을 보장<br>
+        let var1 = Symbol();<br>
+        let var2 = Symbol();<br>
+        var1==var2//false를 반환 , 한번 만들면 변경 불가능 <br>
+        활용은 이렇게 가능<br>
+        let id = Symbol();<br>
+        const member = {
+            name : "kim",
+            [id] : 12345,
+        };<br>
+        member // name과 symbol() 으로 출력됨<br>
+        member[id] // 12345를출력<br>
+        member.id = 6789 라고 다시 지정하면 심벌 과 id로 따로 표현됨<br>
+    </div>
+</body>
+<script>
+    var x= 10;
+    var sum = x+y;
+    var y = 20;
+    console.log(sum);
+
+</script>
+</html>
