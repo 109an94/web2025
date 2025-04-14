@@ -7,6 +7,13 @@
 </head>
 <body>
     <h1>변수와 자료형</h1>
+    <ul>
+        <div>목록</div>
+        <li>alert(), confirm(), prompt(), console.log(),document.write()</li>
+        <li>let, const, var 등 예약어와 호이스팅</li>
+        <li>typeof(), `${}와 같은 템플릿 리터럴`, 객체정의, 배열</li>
+        <li>Number(), parseInt(), parseFloat(), toString(), Boolean(),</li>
+    </ul>
     <H2>입출력 방법</H2>
     <div>F12를 눌러 개발자 도구, console에서 직접 입출력을 해서 팝업창 표시해보기<br>
         alret("안녕하세요");<br>
@@ -97,12 +104,52 @@
         member[id] // 12345를출력<br>
         member.id = 6789 라고 다시 지정하면 심벌 과 id로 따로 표현됨<br>
     </div>
+
+    <h2>자료형 변환</h2>
+    <div>
+        C언어나 자바는 강력한 자료형 체크를 함.<br>
+        예를 들어 int num = 20; char name = "john"<br>
+        스크립트는 유연함 num(변수명) = 값 , 숫자나 문자열 다 가능<br>
+        one = "20" , two = 10 으로 선언 후 one+two //"2010" 이라는 문자열 연결<br>
+        one-two //10 으로 빼기 연산<br>
+        <br>
+        <b>Number() 함수</b><br>
+        Number(여기에) "20"//20 true//1 "Hi?"//NaN으로 등 모든 자료형을 숫자로 변환<br>
+        <b>parseInt(), parseFloat()</b><br>
+        let userInput = prompt("아무 숫자나 입력하세요.")<br>
+        typeof(userInput) //으로 뭐가 넘어왔는 지 확인<br>
+        //10을 입력했어도  string 타입을 입력하기에<br>
+        //userInput * 10 //1000<br>
+        //userInput //'10'<br>
+        parseInt(userInput) //100이 됨<br>
+        <b>toString()</b><br>
+        값.toString()//여기에서 괄호안에 넣는 것은 10진수 인지, 2진수인지 작성<br>
+        num=10 isEmpty=true//숫자형과 논리형 선언후
+        num.toString(), isEmpty.toString()//'10','true'<br>
+        <b>String()</b>
+        isFull = false//Boolean<br>
+        initValue = null // null<br>
+        String(isFull)//'false'<br>
+        String(null)//'null' 이렇게 string도 가능<br>
+        <b>Boolean()</b><br>
+        사용법은 같으나 0이면 false 나머지면 true를 반환<br>
+        문자열은 빈 문자열인 경우만 false<br>
+        <h1>화씨를 섭씨로 변환하기</h1>
+        <!-- <script src="chapter02.js"></script> -->
+         <script>
+            let fah = parseFloat((prompt("변환할 화씨 온도")));
+            let cel;
+
+            cel =((fah - 32)/1.8).toFixed(1);
+            alert(`화씨 ${fah}도는 섭씨 ${cel}도입니다.`);
+         </script>
+    </div>
 </body>
 <script>
-    var x= 10;
-    var sum = x+y;
-    var y = 20;
-    console.log(sum);
+    // var x= 10;
+    // var sum = x+y;
+    // var y = 20;
+    // console.log(sum);
 
 </script>
 </html>
