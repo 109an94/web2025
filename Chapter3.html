@@ -1,1 +1,119 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>연산자와 제어문</h1>
+    <ul>
+        <div>목록</div>
+        <li>산술연산자</li>
+        <li>let, const, var 등 예약어와 호이스팅</li>
+        <li>typeof(), `${}와 같은 템플릿 리터럴`, 객체정의, 배열</li>
+        <li>Number(), parseInt(), parseFloat(), toString(), Boolean(),</li>
+    </ul>
+    <H2>프로그램 동작을 가리키는 기호, 연산자</H2>
+    <div>
+        산술연산자 : +,-,*,/,%,++,--<br>
+        증감연산자 활용 방법 : let x = 10, let y = 4;<br>
+        result = x+y-- //result : 10, y:3이 됨.<br>
+        result = ++x-y // y:3 result:8 x:11 <br>
+        연결연산자 : + (다른 자료형과 합쳐 문자열로 만들 때 사용)<br>
+        할당연산자 : += ... %=<br>
+        비교연사자 : ==, != 등 (<b>=== !==는 값과 데이터 유형까지 같아</b>야 함)<br>
+        따라서 3 =="3" //true를 반환하지만 3 === "3"//false를 반환<br>
+        <b>문자열끼리 비교</b>
+        "a">"b" //false 가 나옴 왜? ASCII코드 값을 바탕으로 비교하기 때문이다.<br>
+        논리연산자 : ! && ||
+    </div>
+    <h2>프로그램 흐름을 자유롭게 조절하는 조건문</h2>
+    <div><b>if / if else / else문</b>
+    let x = 10;<br>
+    if(x>5){<br>
+        console.log("x는 5보다 큽니다.")<br>
+    }else{<br>
+        console.log("x는 5보다 작습니다.")<br>
+    }<br>
+    let userInput = prompt("이름을 입력하세요");<br>
+    if(userInput===null){ //!== 으로 not null체크를 하면 더 쉽게 가능<br>
+        alert("취소했습니다.")<br>
+    }else{<br>
+        alert(userInput)<br>
+    }<br>
+    <b>조건 연산자</b> : (조건)? true일 때 실행할 명령 : false일 때 실행할 명령<br>
+    let userNumber = prompt("숫자를 입력하세요.");<br>
+    if (number !== null){<br>
+        userNumber = parseInt(userNumber);<br>
+        (userNumber%2===0) ? alert(`${userNumber} : 짝수`) : alert(`${userNumber} : 홀수`);<br>
+    }<br>
+    <b>switch문 : switch() case#: break;</b><br>
+    let subject = prompt("신청할 과목을 선택하세요. 1.HTML 2.CSS 3.JavaScript")<br>
+    if(subject !== null){<br>
+        switch(subject){<br>
+            case "1": document.write("HTML을 신청했습니다.");<br>
+            break;<br>
+            case "2": document.write("CSS를 신청했습니다.");<br>
+            break;<br>
+            case "3": document.write("JavaScript을 신청했습니다.");<br>
+            break;<br>
+            default : document.write("잘못 입력했습니다. 다시 입력해 주세요.")<br>
+        }<br>
+    }<br>
+    <b>2개 이상의 조건 체크하기</b><br>
+    OR : ||, AND : &&, NOR:! <br>
+    </div>
+    <h2>같은 동작을 손쉽게 반복하는 반복문</h2>
+    <div>
+    for문 : for(초깃값;조건;증가식){...}<br>
+    forEach문 : 배열명.forEach(콜백 함수){...}<br>
+    const students=["park","kim","lee"];
+    students.forEach(function(student)){<br>
+        document.write(`${student}.`);<br>
+    }<br>
+    배열 요소만 보면 for와 foreach는 다르지 않음.<br>
+    하지만 <b>배열의 크기를 모를 때</b> 사용하기 편리함<br>
+    function은 4장에서 자세히 설명<br>
+    for in문 : for(변수 in 객체){...}<br>
+    const gitBook = {<br>
+        title : "깃&깃허브 입문",<br>
+        pubDate : "2019-12-06",<br>
+        pages : 272,<br>
+        finished : true<br>
+    }<br>
+    for(key in gitBook){
+        document.write(`${key} : ${gitBook[key]<br>}`);<br>
+    }<br>
+    for of문 : 사용법은 for in과 같으며<br>
+    문자열 , 배열과 같은 반복 가능 자료에서 사용<br>
+    while do...while문 : while(조건) do...while(조건)<br>
+    break문과 continue문<br>
+    </div>
+    <h2>소수인지의 여부 확인하기</h2>
+        <script>
+            const number = parseInt(prompt("자연수를 입력하세요."));
+            let isPrim;//소수인지 확인여부
+            if(number === 1){
+                // document.write(`${number}은 소수도, 합성수도 아닙니다.<br>`);
+            }else if (number === 2){
+                isPrim = true;
+            } else{
+                for(let i =2; i<number; i++){
+                    if(number % i ===0){
+                        isPrim = false;
+                        break;
+                    }
+                    else{
+                        isPrim = true;
+                    }
+                }
+            }
+            if(isPrim){
+                document.write(`${number}는 소수입니다.`);
+            } else {
+                document.write(`${number}는 소수가 아닙니다.`);
+            }
+        </script>
+</body>
+</html>
