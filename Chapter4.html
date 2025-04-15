@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>함수와 스코프</h1>
+    <li>
+        <div></div>
+        <ul></ul>
+    </li>
+    <h2>함수</h2>
+    <div>
+        <b>함수를 사용하는 이유</b><br>
+        함수로 분리하여 원하는 기능만 따로 사용 (재사용성 증가)<br>
+        코드가 길어짐에 따른 복잡도 간소화 <br>
+        내부 구현을 몰라도 되는 은닉화<br>
+        <b>함수 선언하고 호출하기</b><br>
+        function 함수명(){...}<br>
+        <b>매개변수와 인수 , return문</b><br>
+        매개변수 : 함수 선언 시 외부에서 값을 받는 변수 //function sum(a,b){}//ab가 매개변수
+        인수 : 함수 선언 시 매개변수가 있는 함수를 호출할 때 인수(인자)도 같이 적어야 함//sum(10,20); 인수
+        return : 반환하는 결과값이나 변수를 지정
+        예제<br>
+        function calcSum(n){//함수를 선언<br>
+            let sum = 0;//내부 구현<br>
+            for(let i = 1; i<=n; i++){<br>
+                sum+= i;<br>
+            }<br>
+            return sum;//계산된 int값을 반환<br>
+        }<br>
+        let num = parseInt(prompt("몇까지 더할까요?"));
+        document.write(`1부터 ${num}까지 더하면 ${calcSum(num)}입니다.`);<br>
+        <b>기본 매개변수</b><br>
+        function multiple(a,b,c){return a+b+c;}//이 메서드를 다음과 같이 실행<br>
+        multiple(2,4,6) //12<br>
+        multiple(2,4) //c=undefined 라서 NaN을 리턴<br>
+        만약 function multiple(a,b=4,c=10) //으로 default값을 설정했다면 인자가 없더래도 기본값으로 계산<br>
+    </div>
+    <h2>변수의 유효 범위, 스코프</h2>
+    <div>
+        <b>스코프</b> : 선언한 변수의 적용 범위<br>
+        지역 스코프 : 특정 영역에서만 사용 가능<br>
+            ex) 함수 스코프, 블록 스코프<br>
+            함수 스코프는 함수 내부에서 선언되어 함수 내부에서만 접근 가능<br>
+                var,let,const 동일<br>
+                    예문) function sum(a,b){ var result = a + b;}<br>
+                    console.log(result) // 에러 발생<br>
+            블록 스코프는 {}, if, for문 블록 내부에서 선언된 변수<br>
+                근데 var은 내부에서 선언해도 외부에서도 접근 사용 가능<br>
+                (let, const은 변수가 선언 된 블록 안에서만 유효)<br>
+                    예문) const factor = 5;//큰 외부에 있어 어디든 사용 가능<br>
+                    function calc(){<br>
+                        return num * factor; <br>
+                    }<br>
+                    {<br>
+                        const num = 10;//블록 스코프에서만 쓸 수 있음<br>
+                        //calc함수를 이 블록 안에서 선언했으면 사용 가능했겠지만 그렇지 않으므로<br>
+                        //이 메서드를 실행하고 싶다면 calc(num) 으로 인자를 받으면 될 듯함.<br>
+                        let result = calc();<br>
+                        //확인 결과 됨.<br>
+                        document.write(`result : ${result}`);<br>
+                    }
+                    <!-- <script>
+                        const factor = 5;//큰 외부에 있어 어디든 사용 가능
+                    function calc(){
+                        return num * factor; 
+                    }
+                    {
+                        const num = 10;//블록 스코프에서만 쓸 수 있음
+                        //calc함수를 이 블록 안에서 선언했으면 사용 가능했겠지만 그렇지 않으므로
+                        //이 메서드를 실행하고 싶다면 calc(num) 으로 인자를 받으면 될 듯함.
+                        let result = calc();
+                        document.write(`result : ${result}`);
+                    }
+                    </script> -->
+        전역 스코프 : 시작 부분에서 변수 선언하여 프로그램 전체에서 사용할 수 있는 스코프<br>
+            함수 어디에서나 값을 변경할 수 있음.<br>
+            var hi = "hello";<br>
+            function change(){ hi = "bye";}<br>
+            console.log(hi);//전역 변수인 hello 출력<br>
+            change();//변수값을 bye로 변환 전역에서 적용이 됨<br>
+            console.log(hi);//적용되어 bye 출력<br>
+            함수에서 변수를 선언할 때 var 예약어를 붙이지 않으면 js는 전역 변수로 인식<br>
+            function greeting(){hi = "hello";}<br>
+            greeting();//함수 실행 시 hi에 hello 할당<br>
+            console.log(hi)//전역이라 hello를 출력 가능<br>
+        <b>자바 스크립트 변수, 이렇게 사용하세요</b><br>
+        1. var 변수보다 let, const변수를 사용합시다. (호이스팅 없는 let, const 변수 사용)<br>
+        2. 전역 변수는 최소한으로 사용 (어디에서든 지 값을 변경할 수 있기 때문, 오류 확률 증가)<br>
+        3. 객체 선언은 const를 사용합니다.(객체 자체가 바뀌지 않도록 하기 위함,. 객체안 프로퍼티는 변경 가능)<br>
+        <br>
+    </div>
+    <h2>이름 없이 사용하는 함수 표현식</h2>
+    <div>
+        <b>익명 함수</b> : 이름 없는 함수는 어떻게 호출하고 왜 사용할까?<br>
+        변수에 할당해서 사용하는 익명 함수<br>
+        el랭귀지로 사용<br>
+        let sum = function(a,b){<br>
+            return = a+b;<br>
+        }<br>
+        console.log(`함수 실행 결과 : ${sum(10,20)}`);<br>
+        즉시 실행 함수<br>
+        정의와 동시에 실행할 수 있음<br>
+        (function(매개변수){...})(인수)); //가 기본 형식;<br>
+        (function(a,b){<br>
+            let sum = a+b;<br>
+            console.log(`함수 실행 결과 : ${sum}`)<br>
+        }(100,200));//이렇게 즉시 실행 가능<br>
+        <br>
+        <b>화살표 함수</b><br>
+        에크마스크립트 2015 부터 => 를 통해 좀 더 간단하게 선언<br>
+        (매개변수) =>{함수 내용}//가 기본 형식<br>
+        매개 변수가 없을 때<br>
+        let hi = () =>{return `안녕하세요?`};//한줄 명령엔 return없어도 됨<br>
+        매개 변수가 2개일 때<br>
+        let hi = user => console.log(`${user}님 안녕하세요?`);<br>
+        hi("홍길동");<br>
+        매개 변수가 3개일 때<br>
+        let sum = (a,b) => a+b;<br>
+        sum(10,20)<br>
+        <b>콜백 함수</b> : 다른 함수의 인수로 사용하는 함수<br>
+        함수 이름 사용해 콜백 함수 실행<br>
+        const bttn = document.querySelector("button");//웹 문서의 버튼을 가져와 변수로 할당<br>
+        function display(){<br>
+            alert("클릭했습니다.");<br>
+        }<br>
+        bttn.addEventListener("click",display);//이벤트리스너에 display를 인자로 사용<br>
+        //이게 다름 함수의 인수가 되는 것 addEventListener안에 display함수를 넣음<br>
+        만약 <b>재사용성 없이 클릭시 한번만 실행</b>되도록 한다면 <br>
+        const bttn = document.querySelector("button");//버튼 요소 가져오기 <br>
+        bttn.addEventListener("click",()=>{ //매개변수가 없는 익명함수 사용<br>
+            alert("클릭했습니다.")<br>
+        })<br>
+        실습1. 입력값을 표시하는 콜백함수 만들기 <br>
+        function showData(name,age){<br>
+            alert(`${name}님의 나이는 ${age}살입니다.`);<br>
+        }<br>
+        function getData(callBack){//보통 콜백함수의 매개변수는 callback으로 선언<br>
+            let userName = prompt("이름 입력");<br>
+            let userAge = prompt("나이 입력");<br>
+            callBack(userName,userAge);//callback? showdata써야 할꺼같은데<br>
+        }<br>
+        getData(showData);//매서드 호출<br>
+        이해가 안되니 다시 정리해보자<br>
+        getData(x) 이 인자로 함수를 받을 수 있음. 지금은 x가 함수라고 할 경우.<br>
+        그리고 그 인자를 받은 함수를 실행할 수 도 있음. <br>
+        왜냐하면 getData 실행 시 x매서드는 showData이기 때문임.<br>
+        따라서 매서드 실행 후 지역변수에 값을 입력 후 콜백함수(인자로 받았던 함수)를 호출<br>
+        따라서 showData가 실행되는 것임.<br>
+        만약, showData() 괄호를 붙여서 인자로 준다면 <br>
+        showData의 return값을 주는 데 해당 매서드의 return이 없다면 undefined를 반환하게 됨<br>
+        <script>
+             function showData(name,age){
+            alert(`${name}님의 나이는 ${age}살입니다.`);
+        }
+        function getData(callBack){//보통 콜백함수의 매개변수는 callback으로 선언
+            let userName = prompt("이름 입력");
+            let userAge = prompt("나이 입력");
+            callBack(userName,userAge);//callback? showdata써야 할꺼같은데
+        }
+        getData(showData);//매서드 호출
+        </script>
+        <b>1급 시민</b><br>
+        1. 변수 할당할 수 있어야 함.<br>
+        2. 다른 함수의 인자로 전달할 수 있어야 함.<br>
+        3. 다른 함수에서 반환값으로 반환할 수 있어야 함.<br>
+        이런 조건을 충족하는 객체
+    </div>
+    <h2>전개 구문</h2>
+    <div> 
+        값을 펼쳐주는 구문<br>
+        fruits = ["apple","banana","grape"];<br>
+        console.log(...fruits);//이렇게 하면 배열을 묶어서 출력하지 않고 나열함.<br>
+        나머지 매개변수<br>
+        매개변수 받을 때 function addNum(a,b) 가 아닌 function addNum(...numbers)배열을 매개변수로 받을 수 있다.<br>
+        이렇게 활용 가능<br>
+        function displayFavroites(frist,...favs){<br>
+            let str = `가장 좋아하는 과일은 ${first}군요`;//fisrt만 썻기에 가능 if와 for문을 통해 나머지도 출력하도록 할 수 도 있음<br>
+            return str;<br>
+        }<br>
+        console.log(displayFavroites("사과","포도","토마토"))<br>
+        <br>
+    </div>
+    <h2>시간을 고려하는 타이머 함수</h2>
+    <div>
+        <b>일정 시간 마다 반복 - setInterval(콜백함스,시간)</b><br>
+        <b>반복 실행 멈추기 - clearInterval(타이머)</b><br>
+        let counter = 0;<br>
+        let timer = setInterval(()=>{ //콜백 함수, 타이머 시작<br>
+            console.log("안녕하세요?");<br>
+            counter++;<br>
+            if(counter === 5){//counter가 5가되면 해당 함수 실행<br>
+                clearInterval(timer);//setInterval로 시작한 함수 종료<br>
+            }<br>
+        },2000)//2000밀리초 뒤에 종료 2초<br>
+        <b>특정 시간 이후에 실행 - setTimeout(콜백함수, 시간)</b><br>
+        setTimeout(()=>{<br>
+            console.log("안녕하세요?");<br>
+        },3000)//3초뒤 실행<br>
+    </div>
+</body>
+</html>
