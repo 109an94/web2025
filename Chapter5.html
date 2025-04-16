@@ -1,10 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table{
+            border: 2px solid black;
+            width: 50%;
+        }
+        th, td{
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1>DOM의 기초</h1>
@@ -15,13 +24,147 @@
     <h2>Dom과 Dom 트리</h2>
     <div>
         Dom이란? 웹 문서에 접근, 제어할 수 있도록 각각 객체로 정의 된 '문서 객체 모델'<br>
-        property와 method를 가짐
-        <b>DOM 트리</b>는 웹 문서의 구조를 보면 됨.
+        property와 method를 가짐<br>
+        <b>DOM 트리</b>는 웹 문서의 구조를 보면 됨.<br>
         <img src="Chapter05/DOMTree.png" alt="">
     </div>
     <h2>웹 요소에 접근하기</h2>
     <div>
-        <b>querySelector()</b> 함수는 하나의 웹 요소에 접근할 수 있다.
+        <b>querySelector()</b> 함수는 하나의 웹 요소에 접근할 수 있다.<br>
+        <table>
+            <thead>
+                <tr>
+                    <td>선택자</td>
+                    <td>기능</td>
+                    <td>사용 예</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>타입 선택자</td>
+                    <td>특정 태그를 사용한 모든 요소</td>
+                    <td>p{...}</td>
+                </tr>
+                <tr>
+                    <td>class 선택자</td>
+                    <td>클래스명을 사용하는 특정 부분</td>
+                    <td>.accent{...}</td>
+                </tr>
+                <tr>
+                    <td>id 선택자</td>
+                    <td>id명을 사용하는 특정 부분</td>
+                    <td>#container{...}</td>
+                </tr>
+                <tr>
+                    <td>하위 선택자</td>
+                    <td>A요소의 하위에 있는 모든 B요소</td>
+                    <td>form input{...}</td>
+                </tr>
+                <tr>
+                    <td>자식 선택자</td>
+                    <td>a요소의 하위에 있는 요소 중 자식 레벨의 B요소</td>
+                    <td>ul > li {...}</td>
+                </tr>
+            </tbody>
+        </table><br>
+        css선택자 종류는 위와 같으며 웹 요소에 접근할 떄는 querySelector() 나 querySelectorAll()<br>
+        예시 document.querySelector("#container")<br> 
+        //h1,img 같은 타입선택자 입력 가능<br>
+        //querySelectorAll(".user")[2] //이처럼 클래스 선택자 all로 선택시 전체선택<br>
+         혹은 [2]이처럼 배열로 반환받는 데 배열 수를 선택해서 특정 값만 반환을 받을 수 있음<br>
+         <b>웹 요소의 내용 가져오기</b><br>
+         웹 요소.innerText<br>
+         웹 요소.innerHTML<br>
+         웹 요소.textContent<br>
+         이미지 요소.src<br>
+         div태그로 감싸진 id선택자 decs에는 p태그는 1개는 기본, displaynone2개 일 때 <br>
+         document.querySelector("#desc").innerText //p class = "user" 이름 : 도레미\n 이렇게 출력<br>
+         document.querySelector("#desc").textContent //이름 : 도레미\n 이렇게 작성 됨<br>
+         <br>
+         <b>웹 요소의 내용 수정하기</b><br>
+         웹 요소.innerText = 내용<br>
+         이미지 요소.src = 이미지 파일<br>
+         onclick 매서드를 활용한 예제<br>
+         const title = document.querySelector("#title");<br>
+         //id태그에 title로 선언된 웹 요소를 가져와 변수 선언<br>
+         title.onclick = function (){<br>//해당 함수.클리시 함수 작성 
+            titile.innerText = "프로필";//ex) my profile이 프로필로 바뀜<br>
+         }<br>
+         //title.onclick = () => title.innerText = "프로필";<br>
+         //이렇게 
+
+    </div>
+    <h2>자바스크립트로 스타일 수정하기</h2>
+    <div>
+        <b>css 속성에 접근하고 수정하기</b><br>
+        요소.style.속성명<br>
+        const title = document.querySelector("#title");<br>
+        title.onclick = () =>{<br>
+            title.style.backgroundColor = "black";<br>
+            title.style.color = "white";<br>
+        }<br>
+        <b>classList 프로퍼티 살펴보기</b><br>
+        classList는 dom에서 자주 사용하는 프로퍼티<br>
+        p class = "user click"> 처럼 클래스 스타일을 2개 동시에 적용<br>
+        document.querySelector("#desc p").classList //배열로 0:"user" 1:"click" 이렇게 출력<br>
+        <br>
+        <b>클래스 스타일 추가하고 삭제하기</b><br>
+        요소.classList.add(클래스명)<br>
+        요소.classList.remove(클래스명)<br>
+        스타일에 .click{...}을 선언한 뒤<br>
+        const title = document.querySelector("#title");<br>
+        title.onclick = () =>{<br>
+            title.classList.add("clicked");<br>
+        }<br>
+        이렇게 하면 실제 클릭할 경우 해당 스타일이 추가된다.<br>
+        
+        <b>특정 클래스 스타일이 있는 요소를 찾아 주는 contains()함수</b><br>
+        요소.classList.contains(클래스명);
+        const title = document.querySelector("#title");<br>
+        title.onclick = () =>{<br>
+            if(!title.classList.contains("clicked")){//clicked 스타일이 없으면<br>
+                title.classList.add("clicked")//스타일 추가<br>
+            }else{//있으면<br>
+                title.classList.remove("clicked")//스타일 제거<br>
+            };<br>
+        }<br>
+        <b>클래스 스타일 토글하기</b><br>
+        요소.classList.toggle(클래스명)<br>
+        const bttn = document.querySelector("button");<br>
+        bttn.onclick = () =>{<br>
+            document.body.classList.toggle("dark");//이렇게 클릭하면 다크모드로 바뀌게 할 수있음<br>
+        }//물론 dark 스타일이 미리 정의가 되어 있어야함<br>
+    </div>
+    <h2>DOM에서 폼 다루기</h2>
+    <div>
+        <b>id나 class 속성값을 사용해 폼 요소에 접근하기</b><br>
+        document.querySelector("#order-name")<br>
+        <b>텍스트 필드에 입력한 값 가져오기</b> (요소.value)<br>
+        document.querySelector("#order-name").value<br>
+        <b>name 속성값을 사용해 폼 요소에 접근하기</b><br>
+        document.order.product.value<br>
+        <b>폼 배열을 사용해 폼 요소에 접근하기</b><br>
+        document.forms//모든 form을 가져옴<br>
+        document.forms[n].element//첫번째 form에 있는 폼 요소를 모두 가져옴<br>
+        document.forms[n].element[1]//첫번째 form에 있는 두번째 폼 요소를 모두 가져옴<br>
+        <b>선택 목록에 접근하기</b><br>
+        document.querySelector("#major")//메이저 라는 아이디 값 안에 모든 목록 접근<br>
+        document.querySelector("#major").options//options프로퍼티를 사용하는 모든 값 을 가져옴<br>
+        <b>알림 창에서 선택한 항목 표시하기</b>
+        const selectMenu = document.querySelector("#major");//선택목록을 가져옴<br>
+        function displaySelect(){//매서드 선언<br>
+            let selectedText = selectMenu.options[selectMenu.selectedIndex].innerText;<br>
+            alert(`[${selectedMenu}를 선택했습니다.]`)<br>
+        }<br>
+        selectedMenu.onchange = displaySelect;<br>
+        <br>
+        <b>라디오 버튼과 체크 박스에 접근</b><br>
+        //예문에는 폼의 name은 testForm, 라디오 박스를 name을 subject, 벨류는 speaking,grammar, writing이다.<br>
+        document.testForm.subject//배열로 입력됨.<br>
+        document.testForm.subject[1].value//grammar를 가져옴 <br>
+        <b>checked 속성을 사용해 선택한 항목에 접근하기</b><br>
+        라디오 버튼이나 체크박스에는 checked라는 속성이 있어 체크 여부로 (true) 웹 요소에 접근할 수 있음<br>
+        document.querySelector("input[name='subject']:checked")<br>
     </div>
 </body>
 </html>
