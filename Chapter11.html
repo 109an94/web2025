@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>DOM 활용하기</h1>
+
+    <h2>DOM 트리와 노드 리스트</h2>
+    <div>
+        <b>DOM 트리와 노드</b><br>
+        <img src="Chapter05/DOMTree.png" alt=""><br>
+        모든 html태그는 요소element 노드가 됩니다.<br>
+        html태그에서 사용하는 텍스트 내용은 자식 노드읜 text 노드가 됩니다.<br>
+        html 태그에 있는 속성은 모두 자식 노드인 속성 attribute 노드가 됩니다.<br>
+        주석은 주석comment 노드가 됩니다.<br>
+        <b>노드 리스트</b><br>
+        DOM에 접근할 때 querySelectorAll() 매서드를 사용하면 여러 개의 노드를 한꺼번에 가져올 수 있음<br>
+        이렇게 <b>가져온 노드 정보들을 노드 리스트</b>라고 함<br>
+        document.querySelctorAll("p");//p태그로 작성된 모든 요소들을 가져옴<br>
+        // 태그 갯수에 따라 NodeList(3)[p,p,p] 라고 표시될 것<br>
+        // 만약 document.querySelctorAll("p")[1]// 으로 적었으면 두번째 인덱스의 값을 그대로 가져옴<br>
+        // <;p>css</;p> 이런 형태로 반환<br>
+    </div>
+    <h2>웹 문서에 새로운 노드 추가하기</h2>
+    <div>
+        <b>내용이 있는 텍스트 노드 추가하기</b><br>
+        ctrl+shift+i 를 눌러 직접 텍스트 노드 추가 가능<br>
+        <b>요소 노드 만들기 - createElement()매서드</b><br>
+        새로운 DOM요소 추가시 요소 노드를 만들어야 함<br>
+        document.createElement(요소명);<br>
+        let newP = = document.createElement("p");<br>
+        // <;p>...<;/p><br>
+        <b>텍스트 노드 만들기 - createTextNode()매서드</b><br>
+        document.createTextNode(텍스트);<br>
+        let textNode = document.createTextNode("TypeScript");<br>
+        <b>자식 노드 연결하기 - appendChild();</b><br>
+        부모 노드.appendChild(자식노드)<br>
+        newP.appendChild(textNode);<br>
+        //이건 요소 노드(부모)와 자식을 연결하는 것..<br>
+         즉 body / p-text 이렇게만 연결 된 것이다.<br>
+        document.body.appendChild(newP);<br>
+        //body-p-text 이렇게 연결 된 것.<br>       
+        <b>속성값이 있는 노드 추가하기</b><br>
+        <b>요소 노드 만들기 - createElement() 메서드 만들기</b><br>
+        let newImg = document.creaateElement("img");<br>
+        <br>
+    </div>
+    <!-- <h2>노드 삭제하기</h2>
+    <div>
+        <br> -->
+    </div>
+</body>
+</html>
