@@ -1,0 +1,143 @@
+/* 공통 레이아웃 */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* header {
+  background-color: #d32f2f;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+} */
+
+/* .header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+/* 백그라운드로 변경 */
+/* .coach-image {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1rem;
+} */
+header {
+    background-color: #d32f2f;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    background-image: url('images/mySparing.png');
+    background-repeat: no-repeat;
+    background-position: right; 
+    background-size: 130px auto; /* 모바일에 맞춘 크기 */
+    background-position-y: top;
+    height: 120px;
+}
+
+header h1 {
+    padding-top: 30px;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+header p {
+    font-size: 1rem;
+    margin: 0;}
+
+main {
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* 내비게이션 (홈 등 다른 페이지에 쓰일 수 있음) */
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #333;
+  padding: 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+/* 컨트롤 요소들 (버튼, 슬라이더 등) */
+.controls {
+  margin: 1rem 0;
+}
+
+input[type="range"] {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+/* 버튼 스타일 */
+button {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0.5rem;
+}
+
+button:hover {
+  background-color: #b71c1c;
+}
+
+/* 드릴 상태 표시 */
+#current-drill {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+#timer {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* 섹션 스타일 (홈이나 훈련 설명용) */
+.section {
+  margin-bottom: 2rem;
+}
+
+.section h2 {
+  color: #333;
+}
+
+/* 푸터 */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+
+/* 반응형 스타일 */
+@media (min-width: 768px) {
+  nav a {
+    font-size: 1.2rem;
+  }
+  main {
+    padding: 2rem;
+  }
+}
