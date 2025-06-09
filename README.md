@@ -23,12 +23,6 @@
 ##  실행 방법
 1. https://109an94.github.io/web2025/webprograming/myboxingCoach.html 
 
----
-1. 이 저장소를 클론하거나 다운로드합니다.
-2. `/sounds` 폴더에 mp3 음성 파일을 추가하세요. (`잽.mp3`, `투.mp3` 등)
-3. `index.html` 또는 `drill.html` 파일을 브라우저에서 열어 실행합니다.
-
-
 
 <details> <summary> 프로젝트 디렉토리</summary>
 my-boxing-coach/<br>
